@@ -1,16 +1,21 @@
-import { Tabs } from 'expo-router';
+// app/_layout.tsx
+import { Stack } from 'expo-router';
+import { useEffect } from 'react';
+// Agar theme ya providers chahiye toh yahan import kar sakta hai
 
-export default function TabLayout() {
+export default function RootLayout() {
   return (
-    <Tabs>
-      <Tabs.Screen
-        name="index"
-        options={{ title: 'Home' }}
-      />
-      <Tabs.Screen
-        name="watchlist"
-        options={{ title: 'Watchlist' }}
-      />
-    </Tabs>
+    <Stack
+      screenOptions={{
+        headerShown: false,              // tabs mein header hide rahega
+        animation: 'fade_from_bottom',   // smooth transition
+      }}
+    >
+      {/* Yeh line important hai — tabs group ko yahan link kar */}
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      
+      {/* Agar future mein login, splash, modal screens add karna ho toh yahan daal sakta hai */}
+      {/* <Stack.Screen name="login" options={{ presentation: 'modal' }} /> */}
+    </Stack>
   );
 }
